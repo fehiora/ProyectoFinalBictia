@@ -3,7 +3,7 @@ const express = require("express");
 const auth = require("../middleware/auth");
 const router = express.Router();
 
-//importando módulos internos
+//Importando módulos internos
 const {
     Usuario
 } = require("../models/usuario");
@@ -44,25 +44,6 @@ router.post("/", async (req, res) => {
 
 //2. Modificar datos del usuario
 router.put("/", auth, async (req, res) => {
-    //Si el usuario existe
-
-    // const usuario = await Usuario.findByIdAndUpdate(
-    //     req.usuario._id, {
-    //         nombre: req.body.nombre,
-    //         apellido: req.body.apellido,
-    //         documento: req.body.documento,
-    //         sexo: req.body.sexo,
-    //         cargo: req.body.cargo,
-    //         rol: req.body.rol, //Esto viene del body? no depende del tipo de usuario lo cual está marcado en la BD?
-    //         clave: req.body.clave,
-    //         preMedica: req.body.preMedica,
-    //         estadoContrato: req.body.estadoContrato,
-    //         imagen: req.body.imagen,
-    //         fechaNacim: req.body.fechaNacim,
-    //     }, {
-    //         new: true,
-    //     }
-    // );
 
     const usuario = await Usuario.findByIdAndUpdate(
         req.usuario._id, 
@@ -75,6 +56,8 @@ router.put("/", auth, async (req, res) => {
 
     res.status(200).send(usuario);
 });
+
+//3. Ocultar usuarios inactivos
 
 //Creando el export
 module.exports = router;

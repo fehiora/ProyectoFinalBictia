@@ -34,13 +34,14 @@ router.post("/", auth, async (req, res) => {
   res.status(200).send(result);
 });
 
-//2. Listar síntomas para cada usuario una vez autenticado
-router.get("/listaSintomas", auth, async (req, res) => {
-  const usuario = await Usuario.findById(req.usuario._id);
+//2. Listar síntomas por usuario y por documento
+router.get("/listaSintomas/:documento", auth, async (req, res) => {
+  const usuario = await Usuario.findOne({ documento: req.params.documento });
   //Si el usuario no existe
   if (!usuario) return res.status(400).send("El usuario no está registrado");
   //Si el usuario existe
-  const seguimiento = await Seguimiento.find({ idUsuario: req.usuario._id });
+  // const seguimiento = await Seguimiento.find({ idUsuario: req.usuario._id });
+  const seguimiento = await Seguimiento.find({ idUsuario: usuario._id });
   res.send(seguimiento)
 });
 
@@ -54,7 +55,6 @@ router.get("/listaSintomasTodos", auth, async (req, res) =>{
     res.send(seguimiento)
 })
 
-//Borrado sin borrar de síntomas
 
 //Export
 module.exports = router;
