@@ -1,6 +1,7 @@
 //Requiriendo módulos de node
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 //Requiriendo módulos internos
 const usuario = require("./routes/usuarioRoutes");
@@ -10,6 +11,7 @@ const seguimiento = require('./routes/seguimientoRoutes');
 
 //Creando la aplicación
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use("/apiCov/usuario/", usuario);
 app.use("/apiCov/authUsuario", authUsuario);

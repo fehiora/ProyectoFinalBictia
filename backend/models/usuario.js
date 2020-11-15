@@ -15,6 +15,7 @@ const esquemaUsuario = new mongoose.Schema({
     preMedica: String,
     contratoActivo: Boolean,
     fechaNacim: Date,
+    usoDatos: Boolean,
     fechaCreacion: {
         type: Date,
         default: Date.now,

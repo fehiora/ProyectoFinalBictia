@@ -46,15 +46,26 @@ router.get("/listaSintomas/:documento", authAdmin, async (req, res) => {
   res.send(seguimiento)
 });
 
-// 3. Listar síntomas todos los usuarios para el administrador una vez se loguea
+// 3. Listar síntomas todos los usuarios por el administrador una vez se loguea
 // router.get("/listaSintomasTodos", authAdmin, async (req, res) =>{
 router.get("/listaSintomasTodos", authAdmin, async (req, res) =>{
-    const usuario = await Usuario.findById(req.usuario._id);
-    //si no hay usuarios
+    // const usuario = await Usuario.findById(req.usuario._id);
+    const usuario = await Usuario.find({
+      usuario: req.usuario._id, 
+      contratoActivo: req.usuario.contratoActivo
+    });
+    //Si no hay usuarios
     if(!usuario) return res.status(400).send("No hay usuarios registrados");
-    //Si hay usuarios
-    const seguimiento = await Seguimiento.find({});
-    res.send(seguimiento)
+    //Si el usuario existe y el contrato está activo
+    if(usuario.contratoActivo == true){
+      const seguimiento = await Seguimiento.find({});
+      console.log(seguimiento)
+      res.send(seguimiento)
+    }else{
+      return res.status(400).send("No hay registros de usuarios activos");
+    }
+    
+    
 })
 
 

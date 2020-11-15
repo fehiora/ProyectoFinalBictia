@@ -13,10 +13,10 @@ router.post("/auth_admin", async (req, res) => {
     });
     //Si el documento no existe
     if (!usuario)
-        return res.status(400).send("Cargo o contraseña incorrectos");
+        return res.status(400).send("Usuario o contraseña incorrectos");
     //Si no existe la clave
     if (usuario.clave !== req.body.clave)
-        return res.status(400).send("Cargo o contraseña incorrectos");
+        return res.status(400).send("Usuario o contraseña incorrectos");
 
     //Generar el JWT
     if (usuario.admin == true) {

@@ -56,12 +56,17 @@ router.post("/crear_user", async (req, res) => {
         contratoActivo: req.body.contratoActivo,
         fechaNacim: req.body.fechaNacim,
         ultimoIngreso: req.body.ultimoIngreso, //cómo chuchas hago esto?
+        usoDatos: req.body.usoDatos
     });
-    const result = await usuario.save();
-    res.status(200).send('Usuario registrado con éxito');
-    
-});
 
+    // Si el usuario no acepta tratamiento de datos
+    if (usuario.usoDatos == false) {
+        res.status(412).send('Usuario no registrado, debe aceptar tratamiento de datos')
+    } else {
+        const result = await usuario.save();
+        res.status(200).send('Usuario registrado con éxito');
+    }
+});
 
 
 //3. Modificar datos del usuario (menos la clave). Esta acción solo la puede hacer el administrador
@@ -69,10 +74,12 @@ router.put("/modificaUsuario/:documento", authAdmin, async (req, res) => {
     delete req.body.clave
     delete req.body.fechaCreacion
     delete req.body.ultimoIngreso
-    const usuario = await Usuario.findOneAndUpdate(
-        { documento: req.params.documento }, 
-        req.body, 
-        { new: true,}
+    const usuario = await Usuario.findOneAndUpdate({
+            documento: req.params.documento
+        },
+        req.body, {
+            new: true,
+        }
     );
     //Si el usuario no existe
     if (!usuario) return res.status(404).send("El usuario no está registrado");
@@ -83,9 +90,11 @@ router.put("/modificaUsuario/:documento", authAdmin, async (req, res) => {
 //3. Modificar contraseña del usuario. Esta acción solo la puede hacer el usuario
 router.put("/", authUsuario, async (req, res) => {
     const usuario = await Usuario.findByIdAndUpdate(
-        req.usuario._id, 
-        { clave: req.body.clave },
-        { new: true, }
+        req.usuario._id, {
+            clave: req.body.clave
+        }, {
+            new: true,
+        }
     );
     //Si el usuario no existe
     if (!usuario) return res.status(404).send("El usuario no está registrado");
