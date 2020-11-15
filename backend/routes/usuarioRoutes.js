@@ -1,6 +1,7 @@
 //Requiriendo los módulos de node
 const express = require("express");
-const auth = require("../middleware/auth");
+const authAdmin = require("../middleware/authAdmin");
+const authUsuario = require("../middleware/authUsuario");
 const router = express.Router();
 
 //Importando módulos internos
@@ -10,8 +11,8 @@ const {
 
 //Rutas de la API
 
-//1. Creación y almacenamiento de usuarios
-router.post("/", async (req, res) => {
+//1. Creación y almacenamiento de administrador
+router.post("/crear_admin", async (req, res) => {
     let usuario = await Usuario.findOne({
         documento: req.body.documento,
     });
@@ -24,40 +25,73 @@ router.post("/", async (req, res) => {
         documento: req.body.documento,
         sexo: req.body.sexo,
         cargo: req.body.cargo,
-        rol: req.body.rol, //Esto viene del body? no depende del tipo de usuario lo cual está marcado en la BD?
+        admin: true,
         clave: req.body.clave,
         preMedica: req.body.preMedica,
-        estadoContrato: req.body.estadoContrato,
-        imagen: req.body.imagen,
+        contratoActivo: req.body.contratoActivo,
         fechaNacim: req.body.fechaNacim,
-        fechaModifica: req.body.fechaModifica, //cómo chuchas hago esto?
         ultimoIngreso: req.body.ultimoIngreso, //cómo chuchas hago esto?
     });
-    // Guardando el usuario en la BD con la creación del JWT
     const result = await usuario.save();
-    const jwtToken = usuario.generateJWT();
-    res.status(200).send({
-        jwtToken,
-    });
-    // res.status(200).send({ jwtToken } + 'Usuario registrado con exito');
+    res.status(200).send('Usuario registrado con éxito');
 });
 
-//2. Modificar datos del usuario
-router.put("/", auth, async (req, res) => {
+//2. Creación y almacenamiento de usuarios
+router.post("/crear_user", async (req, res) => {
+    let usuario = await Usuario.findOne({
+        documento: req.body.documento,
+    });
+    //si el documento se encuentra en la BD
+    if (usuario) return res.status(400).send("El usuario ya está registrado");
+    //Si el documento no se encuentra en la BD, se puede registrar el usuario
+    usuario = new Usuario({
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        documento: req.body.documento,
+        sexo: req.body.sexo,
+        cargo: req.body.cargo,
+        admin: false,
+        clave: req.body.clave,
+        preMedica: req.body.preMedica,
+        contratoActivo: req.body.contratoActivo,
+        fechaNacim: req.body.fechaNacim,
+        ultimoIngreso: req.body.ultimoIngreso, //cómo chuchas hago esto?
+    });
+    const result = await usuario.save();
+    res.status(200).send('Usuario registrado con éxito');
+    
+});
 
-    const usuario = await Usuario.findByIdAndUpdate(
-        req.usuario._id, 
+
+
+//3. Modificar datos del usuario (menos la clave). Esta acción solo la puede hacer el administrador
+router.put("/modificaUsuario/:documento", authAdmin, async (req, res) => {
+    delete req.body.clave
+    delete req.body.fechaCreacion
+    delete req.body.ultimoIngreso
+    const usuario = await Usuario.findOneAndUpdate(
+        { documento: req.params.documento }, 
         req.body, 
-        { new: true, }
+        { new: true,}
     );
-
     //Si el usuario no existe
     if (!usuario) return res.status(404).send("El usuario no está registrado");
-
     res.status(200).send(usuario);
 });
 
-//3. Ocultar usuarios inactivos
+
+//3. Modificar contraseña del usuario. Esta acción solo la puede hacer el usuario
+router.put("/", authUsuario, async (req, res) => {
+    const usuario = await Usuario.findByIdAndUpdate(
+        req.usuario._id, 
+        { clave: req.body.clave },
+        { new: true, }
+    );
+    //Si el usuario no existe
+    if (!usuario) return res.status(404).send("El usuario no está registrado");
+    res.status(200).send(usuario);
+});
+
 
 //Creando el export
 module.exports = router;

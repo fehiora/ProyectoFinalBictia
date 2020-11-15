@@ -5,14 +5,15 @@ const router = express.Router();
 //Módulos internos
 const Seguimiento = require("../models/seguimiento");
 const { Usuario } = require("../models/usuario");
-const auth = require("../middleware/auth");
+const authUsuario = require("../middleware/authUsuario");
+const authAdmin = require("../middleware/authAdmin");
 
 //Rutas
 //1.Crear el reporte de síntomas
-router.post("/", auth, async (req, res) => {
+router.post("/", authUsuario, async (req, res) => {
   const usuario = await Usuario.findById(req.usuario._id);
   //Si el usuario no existe
-  if (!usuario) return res.status(400).send("El usuario no está registrado");
+  if (!usuario) return res.status(404).send("El usuario no está registrado");
   //si el usuario existe
   const seguimiento = new Seguimiento({
     idUsuario: usuario._id,
@@ -34,8 +35,8 @@ router.post("/", auth, async (req, res) => {
   res.status(200).send(result);
 });
 
-//2. Listar síntomas por usuario y por documento
-router.get("/listaSintomas/:documento", auth, async (req, res) => {
+//2. Listar síntomas por usuario y por documento para el administrador
+router.get("/listaSintomas/:documento", authAdmin, async (req, res) => {
   const usuario = await Usuario.findOne({ documento: req.params.documento });
   //Si el usuario no existe
   if (!usuario) return res.status(400).send("El usuario no está registrado");
@@ -46,7 +47,8 @@ router.get("/listaSintomas/:documento", auth, async (req, res) => {
 });
 
 // 3. Listar síntomas todos los usuarios para el administrador una vez se loguea
-router.get("/listaSintomasTodos", auth, async (req, res) =>{
+// router.get("/listaSintomasTodos", authAdmin, async (req, res) =>{
+router.get("/listaSintomasTodos", authAdmin, async (req, res) =>{
     const usuario = await Usuario.findById(req.usuario._id);
     //si no hay usuarios
     if(!usuario) return res.status(400).send("No hay usuarios registrados");

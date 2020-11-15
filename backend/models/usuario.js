@@ -10,17 +10,15 @@ const esquemaUsuario = new mongoose.Schema({
     documento: String,
     sexo: String,
     cargo: String,
-    rol: String,
+    admin: Boolean,
     clave: String,
     preMedica: String,
-    estadoContrato: String,
-    imagen: String, //Se debe verificar el tipo de datos para pruebas lo dejo en String mientras
+    contratoActivo: Boolean,
     fechaNacim: Date,
     fechaCreacion: {
         type: Date,
         default: Date.now,
     },
-    fechaModifica: Date,
     ultimoIngreso: Date,
 });
 
@@ -28,10 +26,20 @@ const esquemaUsuario = new mongoose.Schema({
 esquemaUsuario.methods.generateJWT = function () {
     return jwt.sign({
             _id: this._id,
-            nombre: this.nombre,
             documento: this.documento,
         },
-        "clave"
+        "claveUsuario"
+    );
+};
+
+//Generando el jwt para encriptamiento al ingreso del administrador
+esquemaUsuario.methods.generateJWTAdmin = function () {
+    return jwt.sign({
+            _id: this._id,
+            documento: this.documento,
+            admin: this.admin,
+        },
+        "claveAdmin"
     );
 };
 

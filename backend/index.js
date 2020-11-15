@@ -4,14 +4,16 @@ const mongoose = require("mongoose");
 
 //Requiriendo módulos internos
 const usuario = require("./routes/usuarioRoutes");
-const auth = require("./routes/auth");
+const authUsuario = require("./routes/authUsuarioRoute");
+const authAdmin = require("./routes/authAdminRoute");
 const seguimiento = require('./routes/seguimientoRoutes');
 
 //Creando la aplicación
 const app = express();
 app.use(express.json());
 app.use("/apiCov/usuario/", usuario);
-app.use("/apiCov/auth/", auth);
+app.use("/apiCov/authUsuario", authUsuario);
+app.use("/apiCov/authAdmin", authAdmin);
 app.use('/apiCov/seguimiento/', seguimiento);
 
 //Configurando el puerto de ejecución del servidor
