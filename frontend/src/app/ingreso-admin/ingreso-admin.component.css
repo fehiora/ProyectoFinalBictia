@@ -1,0 +1,62 @@
+.formSigning {
+    background-color: white;
+    border-radius: 3%;
+    width: 45%;
+  }
+  
+  @media (max-width: 1199.98px) {
+    .formSigning {
+      width: 100%;
+    }
+  }
+  
+  form>h4 {
+    color: #115c8f
+  }
+  
+  .botonIngresar {
+    margin-top: 3%;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #ff9203;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .botonIngresar:hover {
+    background-color: #fed136;
+  }
+  
+  .campos>label {
+    color: #115c8f
+  }
+  
+  .campos>a {
+    color: #115c8f
+  }
+  
+  .campos>p {
+    color: #115c8f
+  }
+  
+  
+  .campos>label.recordar:hover {
+    color: #ff9203;
+    text-decoration: none
+  }
+  
+  .campos>a:hover {
+    color: #ff9203;
+    text-decoration: none
+  }
+  
+  
+  .campos>input {
+    border-radius: 10px;
+    border: solid 1px #8ac4ff;
+    box-shadow: 0px 0px 8px rgb(17, 92, 143);
+    padding-left: 5px;
+  }
+  

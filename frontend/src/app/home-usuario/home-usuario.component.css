@@ -1,0 +1,19 @@
+.boton{
+    background-color: #FF9A47;
+    color:#2A2E3C ;
+    font-weight: bold;
+    border: none;
+    box-shadow: 5px 10px 18px #c6cce2;
+}
+
+.color{
+    color:#2A2E3C  !important;
+}
+
+.anuncio{
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: x-large;
+    
+}
