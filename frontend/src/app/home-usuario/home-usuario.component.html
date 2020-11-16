@@ -6,12 +6,28 @@
     <p>"*DAR: Detecto – Aislo - Reporto"</p>
   </section>
   <section>
-    <ul class="nav justify-content-around mt-5 mb-3">
-      <li class="boton rounded-pill">
-        <a class="nav-link color" routerLink = "registroUsuario">REGISTRARSE</a>
-      </li>
-      <li class="boton rounded-pill">
-        <a class="nav-link color" routerLink = "ingresoUsuario">INICIAR SESIÓN</a>
-      </li>
-    </ul>
+      <div class="container">
+        <form>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Usuario">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Contraseña">
+            </div>
+          </div>
+        </form>
+        <div class="d-flex justify-content-around mt-5">
+          <a class="nav-link color boton rounded-pill" routerLink = "/registroUsuario">REGISTRARSE</a>
+          <button type="submit" class="boton rounded-pill p-2">INGRESAR</button>
+        </div>
+        </div>
+      <!-- <li class="boton rounded-pill">
+        <a class="nav-link color" routerLink = "/ingresoUsuario">INICIAR SESIÓN</a>
+      </li> -->
+      <!-- <ul class="nav justify-content-around mt-5 mb-3">
+        <li class="boton rounded-pill">
+          <a class="nav-link color" routerLink = "/registroUsuario">REGISTRARSE</a>
+        </li>
+      </ul> -->
   </section>
