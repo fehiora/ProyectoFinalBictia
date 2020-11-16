@@ -50,22 +50,39 @@ router.get("/listaSintomas/:documento", authAdmin, async (req, res) => {
 // router.get("/listaSintomasTodos", authAdmin, async (req, res) =>{
 router.get("/listaSintomasTodos", authAdmin, async (req, res) =>{
     // const usuario = await Usuario.findById(req.usuario._id);
-    const usuario = await Usuario.find({
-      usuario: req.usuario._id, 
-      contratoActivo: req.usuario.contratoActivo
-    });
+    const usuarios = await Usuario.find({
+      contratoActivo: true
+    }).select(['_id', 'nombre', 'documento', 'contratoActivo']);
     //Si no hay usuarios
-    if(!usuario) return res.status(400).send("No hay usuarios registrados");
+    if(!usuarios) return res.status(404).send("No hay usuarios registrados");
     //Si el usuario existe y el contrato está activo
-    if(usuario.contratoActivo == true){
-      const seguimiento = await Seguimiento.find({});
-      console.log(seguimiento)
-      res.send(seguimiento)
-    }else{
-      return res.status(400).send("No hay registros de usuarios activos");
+    var allSeguimientos = [];
+    // console.log(usuarios)
+    // 
+    
+    for(let x = 0; x < usuarios.length; x++){
+      
+      let seguimientos = await Seguimiento.find(
+        { idUsuario: usuarios[x]._id }
+      )
+
+      if(seguimientos){
+        console.log("usuario:", usuarios[x]);
+        console.log("seguimientos:", seguimientos);
+        for (let y = 0; y < seguimientos.length; y++) {
+          allSeguimientos.push(seguimientos[y]);
+        }
+        console.log("_all:", allSeguimientos);
+        console.log("------------------------------")
+      }
+      
     }
+
+    console.log("ALL:", allSeguimientos)
+
+    if(!allSeguimientos || allSeguimientos.length === 0) return res.status(404).send("No hay seguimientos registrados");
     
-    
+    return res.status(200).send(allSeguimientos);
 })
 
 
