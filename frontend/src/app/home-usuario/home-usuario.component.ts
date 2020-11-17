@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HomeUsuarioComponent implements OnInit {
 
-  constructor(private auth:AuthService, private router: Router) { }
+  constructor(
+    private auth:AuthService, 
+    private router: Router
+    ) { }
 
-  ingreso = {
+  ingresoUsuario = {
     documento:'',
     clave: ''
   }
@@ -19,8 +22,8 @@ export class HomeUsuarioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ingresar(){
-    this.auth.ingresoUsuario(this.ingreso).subscribe(
+  ingresarUsuario(){
+    this.auth.ingresoUsuario(this.ingresoUsuario).subscribe(
       (res) => {
         console.log(res);
       },

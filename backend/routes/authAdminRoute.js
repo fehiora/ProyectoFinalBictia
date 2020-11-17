@@ -6,7 +6,7 @@ const router = express.Router();
 const { Usuario } = require("../models/usuario");
 
 //Generando la ruta
-router.post("/auth_admin", async (req, res) => {
+router.post("/", async (req, res) => {
     //Validar que el documento exista
     const usuario = await Usuario.findOne({
         documento: req.body.documento

@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   private registroUrl = 'http://localhost:3000/apiCov/usuario/crear_user';
-  private ingresoUrl = 'http://localhost:3000/apiCov/authUsuario';
+  private ingresoUsuarioUrl = 'http://localhost:3000/apiCov/authUsuario';
+  private ingresoAdminUrl = 'http://localhost:3000/apiCov/authAdmin';
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +17,10 @@ export class AuthService {
   }
 
   ingresoUsuario(usuario){
-    return this.http.post<any>(this.ingresoUrl, usuario);
+    return this.http.post<any>(this.ingresoUsuarioUrl, usuario);
+  }
+
+  ingresoAdmin(admin){
+    return this.http.post<any>(this.ingresoAdminUrl, admin);
   }
 }

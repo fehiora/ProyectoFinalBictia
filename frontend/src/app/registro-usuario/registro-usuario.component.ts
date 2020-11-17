@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 })
 export class RegistroUsuarioComponent implements OnInit {
 
-  constructor(private auth:AuthService, private router: Router) { }
+  constructor(
+    private auth:AuthService,
+    private router: Router,
+    ) { }
 
   registrarUsuario = {
     nombre: '',
@@ -23,7 +26,7 @@ export class RegistroUsuarioComponent implements OnInit {
     usoDatos: '',
     admin: false,
     contratoActivo: true,
-  }
+  };
 
   ngOnInit(): void {
   }
