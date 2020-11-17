@@ -49,14 +49,13 @@ router.post("/crear_user", async (req, res) => {
         apellido: req.body.apellido,
         documento: req.body.documento,
         sexo: req.body.sexo,
-        cargo: req.body.cargo,
-        admin: false,
-        clave: req.body.clave,
-        preMedica: req.body.preMedica,
-        contratoActivo: req.body.contratoActivo,
         fechaNacim: req.body.fechaNacim,
-        ultimoIngreso: req.body.ultimoIngreso, //cómo chuchas hago esto?
-        usoDatos: req.body.usoDatos
+        preMedica: req.body.preMedica,
+        cargo: req.body.cargo,
+        clave: req.body.clave,
+        usoDatos: req.body.usoDatos,
+        admin: false,
+        contratoActivo: true,
     });
 
     // Si el usuario no acepta tratamiento de datos

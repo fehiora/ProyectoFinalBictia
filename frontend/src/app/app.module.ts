@@ -6,8 +6,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HomeUsuarioComponent } from './home-usuario/home-usuario.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
-import { IngresoUsuarioComponent } from './ingreso-usuario/ingreso-usuario.component';
 import { IngresoAdminComponent } from './ingreso-admin/ingreso-admin.component';
+import { FooterComponent } from './footer/footer.component';
+import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
+import { GestionUsuarioComponent } from './gestion-usuario/gestion-usuario.component';
+import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario.component';
+import { ConsultarSintomasComponent } from './consultar-sintomas/consultar-sintomas.component';
+import { ReportarSintomasComponent } from './reportar-sintomas/reportar-sintomas.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './service/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -15,14 +24,21 @@ import { IngresoAdminComponent } from './ingreso-admin/ingreso-admin.component';
     HomeComponent,
     HomeUsuarioComponent,
     RegistroUsuarioComponent,
-    IngresoUsuarioComponent,
-    IngresoAdminComponent
+    IngresoAdminComponent,
+    FooterComponent,
+    GestionAdminComponent,
+    GestionUsuarioComponent,
+    ModificarUsuarioComponent,
+    ConsultarSintomasComponent,
+    ReportarSintomasComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

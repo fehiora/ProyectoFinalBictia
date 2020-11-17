@@ -9,18 +9,17 @@ const esquemaUsuario = new mongoose.Schema({
     apellido: String,
     documento: String,
     sexo: String,
-    cargo: String,
-    admin: Boolean,
-    clave: String,
-    preMedica: String,
-    contratoActivo: Boolean,
     fechaNacim: Date,
+    preMedica: String,
+    cargo: String,
+    clave: String,
     usoDatos: Boolean,
+    admin: Boolean,
+    contratoActivo: Boolean,
     fechaCreacion: {
         type: Date,
         default: Date.now,
-    },
-    ultimoIngreso: Date,
+    }
 });
 
 //Generando el jwt para encriptamiento al ingreso del usuario
