@@ -31,7 +31,7 @@ export class RegistroUsuarioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  registrar(){
+  registroUsuario(){
     this.auth.registroUsuario(this.registrarUsuario).subscribe(
       (res) => {
         console.log(res);

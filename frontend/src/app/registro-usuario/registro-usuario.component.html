@@ -2,25 +2,26 @@
   integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 <section class="container mt-5">
-  <form>
+  <form #registraUsurioForm ="ngForm" (ngSubmit)= "registroUsuario()">
     <div class="row">
       <div class="col">
         <label for="formGroupExampleInput">*Nombres</label>
-        <input [(ngModel)]="registrarUsuario.nombre" type="text" class="form-control" placeholder="Juan Fernando">
+        <input type="text" name="nombre" id="nombre" #nombre="ngModel" [(ngModel)]="registrarUsuario.nombre"  class="form-control" placeholder="Juan">
       </div>
       <div class="col">
         <label for="formGroupExampleInput">*Apellidos</label>
-        <input [(ngModel)]="registrarUsuario.apellido" type="text" class="form-control" placeholder="Castellanos Sánchez">
+        <input type="text" name="apellido" id="apellido" #apellido="ngModel" [(ngModel)]="registrarUsuario.apellido"  class="form-control" placeholder="Sánchez">
       </div>
     </div>
     <div class="row mt-3">
       <div class="col">
         <label for="formGroupExampleInput">*Documento</label>
-        <input [(ngModel)]="registrarUsuario.documento" type="number" class="form-control" placeholder="80902035">
+        <input type="number" name="documento" id="documento" #documento="ngModel" [(ngModel)]="registrarUsuario.documento"  class="form-control" placeholder="80902035">
       </div>
       <div class="col">
         <label for="inputState">*Sexo</label>
-        <select [(ngModel)]="registrarUsuario.sexo" id="inputState" class="form-control">
+        <!-- <select [(ngModel)]="registrarUsuario.sexo" id="inputState" class="form-control"> -->
+        <select name="sexo" id="sexo" #sexo="ngModel" [(ngModel)]="registrarUsuario.sexo"  class="form-control">
           <option selected>Femenino</option>
           <option>Masculino</option>
           <option>Otro</option>
@@ -30,32 +31,35 @@
     <div class="row mt-3">
       <div class="col mt-4    ">
         <label for="inputState">*Fecha de nacimiento</label>
-        <input [(ngModel)]="registrarUsuario.fechaNacim" type="date" id="start" name="trip-start" value="2020-10-28" min="1955-01-01" max="2002-12-31">
+        <!-- <input [(ngModel)]="registrarUsuario.fechaNacim" type="date" id="start" name="trip-start" value="2020-10-28" min="1955-01-01" max="2002-12-31"> -->
+        <input name="nacimiento" id="nacimiento" #nacimiento="ngModel" [(ngModel)]="registrarUsuario.fechaNacim" type="date" value="2020-10-28" min="1955-01-01" max="2002-12-31">
       </div>
       <div class="col">
         <label for="formGroupExampleInput">*Enfermedades Previas</label>
-        <input [(ngModel)]="registrarUsuario.preMedica"type="text" class="form-control" placeholder="Sobrepeso">
+        <input type="text" name="enfermedad" id="enfermedad" #enfermedad="ngModel"  [(ngModel)]="registrarUsuario.preMedica" class="form-control" placeholder="Sobrepeso">
       </div>
     </div>
     <div class="row mt-3">
       <div class="col">
         <label for="formGroupExampleInput">*Cargo</label>
-        <input [(ngModel)]="registrarUsuario.cargo" type="text" class="form-control" placeholder="Mensajero">
+        <input type="text" name="cargo" id="cargo" #cargo="ngModel" [(ngModel)]="registrarUsuario.cargo" class="form-control" placeholder="Mensajero">
       </div>
       <div class="col">
         <label for="formGroupExampleInput">*Contraseña</label>
-        <input [(ngModel)]="registrarUsuario.clave" type="password" class="form-control" placeholder="Mayo1234+">
+        <input type="password" name="clave" id="clave" #clave="ngModel" [(ngModel)]="registrarUsuario.clave"  class="form-control" placeholder="Mayo1234+">
       </div>
     </div>
     <div class="form-check mt-2">
-      <input [(ngModel)]="registrarUsuario.usoDatos" class="form-check-input" type="checkbox" id="gridCheck">
+      <!-- <input [(ngModel)]="registrarUsuario.usoDatos" class="form-check-input" type="checkbox" checked="true" id="gridCheck"> -->
+      <input type="checkbox" name="usoDatos" id="usoDatos" #usoDatos="ngModel" [(ngModel)]="registrarUsuario.usoDatos" class="form-check-input" checked="true" >
       <label class="form-check-label" for="gridCheck">
         Autorizo el tratamiento de mis datos personales
       </label>
     </div>
   </form>
   <div class="d-flex justify-content-around mt-5">
-    <button (click)="registrar()" type="submit" class="boton rounded-pill p-2">REGISTRARSE</button>
+    <!-- <button (click)=" registroUsuario()" type="submit" class="boton rounded-pill p-2">REGISTRARSE</button> -->
+    <button (click)="registroUsuario()" type="submit" class="boton rounded-pill p-2">REGISTRARSE</button>
     <a class="nav-link color boton rounded-pill" routerLink = "/homeUsuario">INICIAR SESIÓN</a>
   </div>
 </section>

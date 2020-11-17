@@ -7,13 +7,13 @@
   </section>
   <section>
       <div class="container">
-        <form>
+        <form #ingresarUsuarioForm ="ngForm" (ngSubmit)= "ingresarUsuario();">
           <div class="row">
             <div class="col">
-              <input [(ngModel)]="ingresoUsuario.documento" type="number" class="form-control" placeholder="*Documento">
+              <input type="number" name="documento" id="documento" #documento="ngModel" [(ngModel)]="ingresoUsuario.documento"  class="form-control" placeholder="*Documento">
             </div>
             <div class="col">
-              <input [(ngModel)]="ingresoUsuario.clave" type="password" class="form-control" placeholder="*Contraseña">
+              <input type="password" name="clave" id="clave" #clave="ngModel"  [(ngModel)]="ingresoUsuario.clave"  class="form-control" placeholder="*Contraseña">
             </div>
           </div>
         </form>
