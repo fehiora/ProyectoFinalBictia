@@ -1,3 +1,21 @@
 .navAdmin{
-    background-color:  #43792A;
+    background-color: #43792A;
+}
+
+.menuLetra >a{
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #FFE485;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: #2A2E3C;
+    font-weight: bold;
+}
+
+.menuLetra >a:hover {
+    color: #FF9A47 !important;
+}
+
+p {
+    color: #FFE485 !important;
 }

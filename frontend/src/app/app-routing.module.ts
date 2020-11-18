@@ -7,6 +7,7 @@ import { HomeUsuarioComponent } from './home-usuario/home-usuario.component';
 import { IngresoAdminComponent } from './ingreso-admin/ingreso-admin.component';
 import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { ReportarSintomasComponent } from './reportar-sintomas/reportar-sintomas.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'modificarUsuario',
     component: ModificarUsuarioComponent,
+  },
+  {
+    path: 'reportarSintomas',
+    component: ReportarSintomasComponent,
   },
 
 ];
