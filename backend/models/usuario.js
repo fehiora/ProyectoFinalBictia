@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const esquemaUsuario = new mongoose.Schema({
     nombre: String,
     apellido: String,
-    documento: String,
+    documento: Number,
     sexo: String,
     fechaNacim: Date,
     preMedica: String,
@@ -28,7 +28,8 @@ esquemaUsuario.methods.generateJWT = function () {
             _id: this._id,
             documento: this.documento,
         },
-        "claveUsuario"
+        "claveUsuario",
+        { expiresIn: 20 * 60 } // expira en 20min
     );
 };
 
@@ -39,10 +40,11 @@ esquemaUsuario.methods.generateJWTAdmin = function () {
             documento: this.documento,
             admin: this.admin,
         },
-        "claveAdmin"
+        "claveAdmin",
+        { expiresIn: 60 * 60 } // expira en 1h
     );
 };
 
 //Exports
-const Usuario = mongoose.model("usuario", esquemaUsuario);
+const Usuario = mongoose.model("usuario", esquemaUsuario, 'usuario');
 module.exports.Usuario = Usuario;

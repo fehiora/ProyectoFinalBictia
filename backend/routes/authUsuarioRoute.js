@@ -8,7 +8,6 @@ const { Usuario } = require("../models/usuario");
 //Generando la ruta
 router.post("/", async (req, res) => {
     //Validar que el documento exista
-    console.log("Ingresando a routes.auth.post")
     const usuario = await Usuario.findOne({
         documento: req.body.documento
     });
@@ -20,7 +19,7 @@ router.post("/", async (req, res) => {
         return res.status(400).send("Documento o contraseña incorrectos");
     //Generar el JWT
     const jwtToken = usuario.generateJWT();
-    console.log("Saliendo de routes.auth.post")
+    
     res.status(200).send({
         jwtToken
     });

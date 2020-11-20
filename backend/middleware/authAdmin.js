@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 function authAdmin(req, res, next) {
     let jwtTokenAdmin = req.header('Authorization');
     jwtTokenAdmin = jwtTokenAdmin.split(' ')[1];
-    console.log("AdminToken: " + jwtTokenAdmin)
     //Si el token no existe
     if (!jwtTokenAdmin) return res.status(400).send('No hay token para el acceso');
     //Si el token existe

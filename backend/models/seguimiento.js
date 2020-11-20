@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 //Generando el modelo
 const esquemaSeguimiento = new mongoose.Schema({
-    idUsuario: String,
+    usuario: {type: mongoose.Schema.Types.ObjectId, ref: 'usuario'},
     garganta: Boolean,
     malestar: Boolean,
     fiebre: Boolean,
@@ -24,5 +24,5 @@ const esquemaSeguimiento = new mongoose.Schema({
 });
 
 //Generando exports
-const Seguimiento = mongoose.model('seguimiento', esquemaSeguimiento);
+const Seguimiento = mongoose.model('seguimiento', esquemaSeguimiento, 'seguimiento');
 module.exports = Seguimiento;

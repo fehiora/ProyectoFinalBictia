@@ -16,7 +16,7 @@ router.post("/", authUsuario, async (req, res) => {
   if (!usuario) return res.status(404).send("El usuario no está registrado");
   //si el usuario existe
   const seguimiento = new Seguimiento({
-    idUsuario: usuario._id,
+    usuario: usuario._id,
     garganta: req.body.garganta,
     malestar: req.body.malestar,
     fiebre: req.body.fiebre,
@@ -48,41 +48,29 @@ router.get("/listaSintomas/:documento", authAdmin, async (req, res) => {
 
 // 3. Listar síntomas todos los usuarios por el administrador una vez se loguea
 // router.get("/listaSintomasTodos", authAdmin, async (req, res) =>{
-router.get("/listaSintomasTodos", authAdmin, async (req, res) =>{
+router.get("/listaSintomas/", authAdmin, async (req, res) =>{
     // const usuario = await Usuario.findById(req.usuario._id);
     const usuarios = await Usuario.find({
       contratoActivo: true
-    }).select(['_id', 'nombre', 'documento', 'contratoActivo']);
+    }).select(['_id']);
     //Si no hay usuarios
     if(!usuarios) return res.status(404).send("No hay usuarios registrados");
     //Si el usuario existe y el contrato está activo
-    var allSeguimientos = [];
-    // console.log(usuarios)
-    // 
-    
-    for(let x = 0; x < usuarios.length; x++){
-      
-      let seguimientos = await Seguimiento.find(
-        { idUsuario: usuarios[x]._id }
-      )
 
-      if(seguimientos){
-        console.log("usuario:", usuarios[x]);
-        console.log("seguimientos:", seguimientos);
-        for (let y = 0; y < seguimientos.length; y++) {
-          allSeguimientos.push(seguimientos[y]);
-        }
-        console.log("_all:", allSeguimientos);
-        console.log("------------------------------")
+    await Seguimiento.find({
+      usuario: {$in: usuarios}
+    }).populate({
+      path: 'usuario',
+      select: 'nombre apellido documento cargo -_id'
+    }).exec( (error, seguimientos) => {
+      if (error) { 
+        return res.status(404).send("No hay seguimientos registrados");
       }
-      
-    }
 
-    console.log("ALL:", allSeguimientos)
+      // console.log("seguimientos:", seguimientos)
+      return res.status(200).send(seguimientos);
+    })
 
-    if(!allSeguimientos || allSeguimientos.length === 0) return res.status(404).send("No hay seguimientos registrados");
-    
-    return res.status(200).send(allSeguimientos);
 })
 
 
