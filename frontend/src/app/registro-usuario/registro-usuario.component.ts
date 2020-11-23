@@ -12,7 +12,7 @@ export class RegistroUsuarioComponent implements OnInit {
   constructor(
     private auth:AuthService,
     private router: Router,
-    ) { }
+  ) { }
 
   registrarUsuario = {
     nombre: '',
@@ -24,8 +24,6 @@ export class RegistroUsuarioComponent implements OnInit {
     cargo: '',
     clave: '',
     usoDatos: '',
-    admin: false,
-    contratoActivo: true,
   };
 
   ngOnInit(): void {
@@ -35,6 +33,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.auth.registroUsuario(this.registrarUsuario).subscribe(
       (res) => {
         console.log(res);
+        this.router.navigate(['homeUsuario']);
       },
       (err) => console.log(err)
     );

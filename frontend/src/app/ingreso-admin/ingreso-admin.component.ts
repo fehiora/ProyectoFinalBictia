@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class IngresoAdminComponent implements OnInit {
 
   constructor(
-    private auth:AuthService, 
+    private auth: AuthService, 
     private router: Router
   ) { }
 
@@ -26,6 +26,8 @@ export class IngresoAdminComponent implements OnInit {
     this.auth.ingresoAdmin(this.ingresoAdmin).subscribe(
       (res) => {
         console.log(res);
+        localStorage.setItem('token', res.jwtToken)
+        this.router.navigate(['gestionAdmin']);
       },
       (err) => console.log(err)
     );

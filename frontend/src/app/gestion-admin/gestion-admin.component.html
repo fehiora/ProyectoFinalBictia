@@ -20,9 +20,11 @@
 </nav>
 
 <div class="m-2">
-
-    <table class="table table-sm">
-        <thead>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <table class="table table-sm">
+        <thead class="thead-dark">
           <tr>
             <th scope="col">Documento</th>
             <th scope="col">Nombre</th>
@@ -42,23 +44,62 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+          <tr *ngFor="let seguimiento of seguimientos">
+            <td>{{ seguimiento.usuario.documento }}</td>
+            <td>{{ seguimiento.usuario.nombre }}</td>
+            <td>{{ seguimiento.usuario.apellido }}</td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.garganta === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.garganta === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.malestar === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.malestar === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.fiebre === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.fiebre === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.tos === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.tos === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.respiracion === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.respiracion === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.olfato === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.olfato === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.aislamiento1 === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.aislamiento1 === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.aislamiento2 === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.aislamiento2 === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.convivencia === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.convivencia === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.contacto === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.contacto === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.nasal === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.nasal === false" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <i *ngIf="seguimiento.fatiga === true" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="seguimiento.fatiga === false" class="text-success fas fa-check-circle"></i>
+            </td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
 </div>

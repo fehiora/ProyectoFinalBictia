@@ -12,7 +12,7 @@ export class HomeUsuarioComponent implements OnInit {
   constructor(
     private auth:AuthService, 
     private router: Router
-    ) { }
+  ) { }
 
   ingresoUsuario = {
     documento:'',
