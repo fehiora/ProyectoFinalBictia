@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 //Generando el modelo
 const esquemaSeguimiento = new mongoose.Schema({
-    usuario: {type: mongoose.Schema.Types.ObjectId, ref: 'usuario'},
+    usuario: {type: mongoose.Schema.Types.ObjectId, ref: 'usuario'}, //Se usa esta referencia para que traiga datos del usuario relacionados con el seguimiento
     garganta: Boolean,
     malestar: Boolean,
     fiebre: Boolean,

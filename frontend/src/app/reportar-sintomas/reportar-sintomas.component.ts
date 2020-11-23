@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService }from '../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reportar-sintomas',
@@ -7,9 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportarSintomasComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth:AuthService,
+    private router: Router,
+  ) { }
+
+  registrarSintoma = {
+    jornada:'',
+    garganta: '',
+    malestar: '',
+    fatiga:'',
+    fiebre: '',
+    tos: '',
+    respiracion: '',
+    olfato: '',
+    nasal:'',
+    aislamiento1: '',
+    aislamiento2: '',
+    convivencia: '',
+    contacto:'',
+  };
 
   ngOnInit(): void {
   }
 
+  registroSintoma(){
+    this.auth.registroSintoma(this.registrarSintoma).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => console.log(err)
+    );
+  }
 }

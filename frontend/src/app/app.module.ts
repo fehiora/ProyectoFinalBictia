@@ -16,6 +16,7 @@ import { ReportarSintomasComponent } from './reportar-sintomas/reportar-sintomas
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
+import { AuthGuard } from './guard/auth.guard';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { AuthService } from './service/auth.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -9,6 +9,7 @@ export class AuthService {
   private registroUrl = 'http://localhost:3000/apiCov/usuario/crear_user';
   private ingresoUsuarioUrl = 'http://localhost:3000/apiCov/authUsuario';
   private ingresoAdminUrl = 'http://localhost:3000/apiCov/authAdmin';
+  private registroSintomaUrl = 'http://localhost:3000/apiCov/seguimiento';
 
   constructor(private http: HttpClient) { }
 
@@ -23,4 +24,17 @@ export class AuthService {
   ingresoAdmin(admin){
     return this.http.post<any>(this.ingresoAdminUrl, admin);
   }
+
+  ingresoUsuarioOn(){
+    return !!localStorage.getItem('token');
+  }
+
+  obtenerTokenUsuario(){
+    return localStorage.getItem('token');
+  }
+
+  registroSintoma(admin){
+    return this.http.post<any>(this.registroSintomaUrl, admin);
+  }
+
 }

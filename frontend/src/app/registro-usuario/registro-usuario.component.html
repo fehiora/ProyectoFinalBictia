@@ -20,7 +20,6 @@
       </div>
       <div class="col">
         <label for="inputState">*Sexo</label>
-        <!-- <select [(ngModel)]="registrarUsuario.sexo" id="inputState" class="form-control"> -->
         <select name="sexo" id="sexo" #sexo="ngModel" [(ngModel)]="registrarUsuario.sexo"  class="form-control">
           <option selected>Femenino</option>
           <option>Masculino</option>
@@ -31,7 +30,6 @@
     <div class="row mt-3">
       <div class="col mt-4    ">
         <label for="inputState">*Fecha de nacimiento</label>
-        <!-- <input [(ngModel)]="registrarUsuario.fechaNacim" type="date" id="start" name="trip-start" value="2020-10-28" min="1955-01-01" max="2002-12-31"> -->
         <input name="nacimiento" id="nacimiento" #nacimiento="ngModel" [(ngModel)]="registrarUsuario.fechaNacim" type="date" value="2020-10-28" min="1955-01-01" max="2002-12-31">
       </div>
       <div class="col">
@@ -50,7 +48,6 @@
       </div>
     </div>
     <div class="form-check mt-2">
-      <!-- <input [(ngModel)]="registrarUsuario.usoDatos" class="form-check-input" type="checkbox" checked="true" id="gridCheck"> -->
       <input type="checkbox" name="usoDatos" id="usoDatos" #usoDatos="ngModel" [(ngModel)]="registrarUsuario.usoDatos" class="form-check-input" checked="true" >
       <label class="form-check-label" for="gridCheck">
         Autorizo el tratamiento de mis datos personales
@@ -58,7 +55,6 @@
     </div>
   </form>
   <div class="d-flex justify-content-around mt-5">
-    <!-- <button (click)=" registroUsuario()" type="submit" class="boton rounded-pill p-2">REGISTRARSE</button> -->
     <button (click)="registroUsuario()" type="submit" class="boton rounded-pill p-2">REGISTRARSE</button>
     <a class="nav-link color boton rounded-pill" routerLink = "/homeUsuario">INICIAR SESIÓN</a>
   </div>

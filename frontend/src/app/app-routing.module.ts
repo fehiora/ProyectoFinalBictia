@@ -8,6 +8,7 @@ import { IngresoAdminComponent } from './ingreso-admin/ingreso-admin.component';
 import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { ReportarSintomasComponent } from './reportar-sintomas/reportar-sintomas.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -38,14 +39,17 @@ const routes: Routes = [
   {
     path: 'gestionUsuario',
     component: GestionUsuarioComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'modificarUsuario',
     component: ModificarUsuarioComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'reportarSintomas',
     component: ReportarSintomasComponent,
+    canActivate: [AuthGuard]
   },
 
 ];

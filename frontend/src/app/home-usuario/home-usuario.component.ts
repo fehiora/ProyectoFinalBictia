@@ -26,6 +26,8 @@ export class HomeUsuarioComponent implements OnInit {
     this.auth.ingresoUsuario(this.ingresoUsuario).subscribe(
       (res) => {
         console.log(res);
+        localStorage.setItem('token', res.jwtToken);
+        this.router.navigate(['/reportarSintomas']);
       },
       (err) => console.log(err)
     );
