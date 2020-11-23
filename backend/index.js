@@ -25,7 +25,8 @@ app.listen(port, () => console.log("Ejecutando servidor en puerto: " + port));
 //Conectando con MongoDB
 
 mongoose
-    .connect("mongodb://localhost/covIt", {
+    // .connect("mongodb://localhost/covIt", {
+    .connect("mongodb://192.168.0.28/covIt", {
         useNewUrlParser: true,
         useFindAndModify: false,
         useCreateIndex: true,

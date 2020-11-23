@@ -33,7 +33,7 @@ router.post("/crear_admin", async (req, res) => {
         ultimoIngreso: req.body.ultimoIngreso, //cómo chuchas hago esto?
     });
     const result = await usuario.save();
-    res.status(200).send('Usuario registrado con éxito');
+    res.status(200).send({msg: 'Usuario registrado con éxito'});
 });
 
 //2. Creación y almacenamiento de usuarios
@@ -60,10 +60,10 @@ router.post("/crear_user", async (req, res) => {
 
     // Si el usuario no acepta tratamiento de datos
     if (usuario.usoDatos == false) {
-        res.status(412).send('Usuario no registrado, debe aceptar tratamiento de datos')
+        res.status(412).send({ err: 'Usuario no registrado, debe aceptar tratamiento de datos' })
     } else {
         const result = await usuario.save();
-        res.status(200).send('Usuario registrado con éxito');
+        res.status(200).send({ msg: 'Usuario registrado con éxito' });
     }
 });
 

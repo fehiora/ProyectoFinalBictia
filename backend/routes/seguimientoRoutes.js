@@ -17,19 +17,19 @@ router.post("/", authUsuario, async (req, res) => {
   //si el usuario existe
   const seguimiento = new Seguimiento({
     usuario: usuario._id,
+    jornada: req.body.jornada,
     garganta: req.body.garganta,
     malestar: req.body.malestar,
+    fatiga: req.body.fatiga,
     fiebre: req.body.fiebre,
     tos: req.body.tos,
     respiracion: req.body.respiracion,
     olfato: req.body.olfato,
+    nasal: req.body.nasal,
     aislamiento1: req.body.aislamiento1,
     aislamiento2: req.body.aislamiento2,
     convivencia: req.body.convivencia,
     contacto: req.body.contacto,
-    nasal: req.body.nasal,
-    fatiga: req.body.fatiga,
-    jornada: req.body.jornada,
   });
   const result = await seguimiento.save();
   res.status(200).send(result);

@@ -1,14 +1,134 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
   integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-<div class="container justify-content.between">
-    <div class="custom-control custom-radio custom-control-inline">
-        <p>¿Dolor de garganta?</p>
-        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-        <label class="custom-control-label" for="customRadioInline1">SI</label>
+<section class="container mt-5">
+  <form class="mt-3 mb-3">
+    <form class="ml-2 mb-2">
+      <div class="row">
+        <div class="col-8">
+          <h3 class="titulo">¿Ha presentado alguno de los siguientes síntomas en las últimas 24 horas? </h3>
+        </div>
+        <div class="col-4">
+          <label for="inputState" class="mr-2">Jornada del reporte:</label>
+          <select name="jornada" id="jornada" #jornada="ngModel" [(ngModel)]="registrarSintoma.jornada"  class="form-control-sm border border-light">
+            <option selected>Ingreso</option>
+            <option>Salida</option>
+          </select>
+        </div>
       </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-        <label class="custom-control-label" for="customRadioInline2">NO</label>
+    </form>
+    <div class="container ml-5">
+      <div class="row">
+        <div class="col-10">
+          <label for="garganta">¿Dolor de garganta?</label>
+        </div>
+        <div class="col-2">
+          <input name="garganta" value="s" type="radio" [(ngModel)]="registrarSintoma.garganta"/>Si
+          <input name="garganta" value="n" type="radio" [(ngModel)]="registrarSintoma.garganta"/>No
+        </div>
       </div>
-</div>
+      <div class="row">
+        <div class="col-10">
+          <label for="malestar">¿Malestar general y dolor muscular que te limite las actividades de la vida diaria?</label>
+        </div>
+        <div class="col-2">
+          <input name="malestar" value="s" type="radio" [(ngModel)]="registrarSintoma.malestar"/>Si
+          <input name="malestar" value="n" type="radio" [(ngModel)]="registrarSintoma.malestar"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="fatiga">¿Fatiga constante y sin causa?</label>
+        </div>
+        <div class="col-2">
+          <input name="fatiga" value="s" type="radio" [(ngModel)]="registrarSintoma.fatiga"/>Si
+          <input name="fatiga" value="n" type="radio" [(ngModel)]="registrarSintoma.fatiga"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="fiebre">¿Fiebre igual o mayor a 37.5 grados medida con termómetro?</label>
+        </div>
+        <div class="col-2">
+          <input name="fiebre" value="s" type="radio" [(ngModel)]="registrarSintoma.fiebre"/>Si
+          <input name="fiebre" value="n" type="radio" [(ngModel)]="registrarSintoma.fiebre"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="tos">¿Tos seca y persistente de inicio reciente?</label>
+        </div>
+        <div class="col-2">
+          <input name="tos" value="s" type="radio" [(ngModel)]="registrarSintoma.tos"/>Si
+          <input name="tos" value="n" type="radio" [(ngModel)]="registrarSintoma.tos"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="respiracion">¿Dificultad para respirar de inicio reciente?</label>
+        </div>
+        <div class="col-2">
+          <input name="respiracion" value="s" type="radio" [(ngModel)]="registrarSintoma.respiracion"/>Si
+          <input name="respiracion" value="n" type="radio" [(ngModel)]="registrarSintoma.respiracion"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="olfato">¿Pérdida del olfato y/o el gusto?</label>
+        </div>
+        <div class="col-2">
+          <input name="olfato" value="s" type="radio" [(ngModel)]="registrarSintoma.olfato"/>Si
+          <input name="olfato" value="n" type="radio" [(ngModel)]="registrarSintoma.olfato"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="nasal">¿Congestión nasal?</label>
+        </div>
+        <div class="col-2">
+          <input name="nasal" value="s" type="radio" [(ngModel)]="registrarSintoma.nasal"/>Si
+          <input name="nasal" value="n" type="radio" [(ngModel)]="registrarSintoma.nasal"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="aislamiento1">¿Actualmente te encuentras en aislamiento y en espera del resultado de una prueba para Coronavirus COVID-19?</label>
+        </div>
+        <div class="col-2">
+          <input name="aislamiento1" value="s" type="radio" [(ngModel)]="registrarSintoma.aislamiento1"/>Si
+          <input name="aislamiento1" value="n" type="radio" [(ngModel)]="registrarSintoma.aislamiento1"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="aislamiento2">¿Actualmente te encuentras en aislamiento luego de haber sido diagnosticado con prueba positiva para Coronavirus COVID-19?</label>
+        </div>
+        <div class="col-2">
+          <input name="aislamiento2" value="s" type="radio" [(ngModel)]="registrarSintoma.aislamiento2"/>Si
+          <input name="aislamiento2" value="n" type="radio" [(ngModel)]="registrarSintoma.aislamiento2"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="convivencia">¿Vives con alguien en proceso de diagnóstico (le ordenaron prueba) o confirmado de tener COVID-19?</label>
+        </div>
+        <div class="col-2">
+          <input name="convivencia" value="s" type="radio" [(ngModel)]="registrarSintoma.convivencia"/>Si
+          <input name="convivencia" value="n" type="radio" [(ngModel)]="registrarSintoma.convivencia"/>No
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <label for="contacto">¿En los últimos 14 días has tenido contacto estrecho (por más de 15 minutos, a menos de 2 metros y sin usar elementos de protección personal) con alguien en proceso de diagnóstico (le ordenaron prueba) o confirmado de COVID-19?</label>
+        </div>
+        <div class="col-2">
+          <input name="contacto" value="s" type="radio" [(ngModel)]="registrarSintoma.contacto"/>Si
+          <input name="contacto" value="n" type="radio" [(ngModel)]="registrarSintoma.contacto"/>No
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="d-flex justify-content-around mt-3">
+    <button (click)="registroSintoma()" type="submit" class="boton rounded-pill p-2">ENVIAR</button>
+  </div>
+</section>

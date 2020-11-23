@@ -32,10 +32,10 @@ export class RegistroUsuarioComponent implements OnInit {
   registroUsuario(){
     this.auth.registroUsuario(this.registrarUsuario).subscribe(
       (res) => {
-        console.log(res);
+        console.log("res:", res);
         this.router.navigate(['homeUsuario']);
       },
-      (err) => console.log(err)
+      (err) => console.log("err:", err)
     );
   }
 }
