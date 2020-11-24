@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { AdminService } from './service/admin.service';
-import { AuthGuard } from './guard/auth.guard';
+// import { AuthGuard } from './guard/auth.guard';
 
 
 @NgModule({
@@ -43,7 +43,7 @@ import { AuthGuard } from './guard/auth.guard';
   providers: [
     AuthService,
     AdminService,
-    AuthGuard
+    // AuthGuard
   ],
   bootstrap: [AppComponent],
 })

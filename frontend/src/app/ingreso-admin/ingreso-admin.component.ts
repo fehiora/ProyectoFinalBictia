@@ -23,13 +23,10 @@ export class IngresoAdminComponent implements OnInit {
   }
 
   ingresarAdmin(){
-    this.auth.ingresoAdmin(this.ingresoAdmin).subscribe(
-      (res) => {
-        console.log(res);
-        localStorage.setItem('token', res.jwtToken)
-        this.router.navigate(['gestionAdmin']);
-      },
-      (err) => console.log(err)
-    );
+    if(this.auth.ingresoAdmin(this.ingresoAdmin)){
+      this.router.navigate(['gestionAdmin']);
+    }else{
+      alert("Error en el ingreso");
+    }
   }
 }

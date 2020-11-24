@@ -10,22 +10,22 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active menuLetra">
-        <a class="nav-link" routerLink = "homeUsuario">USUARIOS <span class="sr-only">(current)</span></a>
+        <a *ngIf="!auth.sesionActiva()" class="nav-link" routerLink = "homeUsuario">USUARIOS <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item menuLetra">
-        <a class="nav-link" routerLink = "ingresoAdmin">ADMINISTRADOR</a>
+        <a *ngIf="!auth.sesionActiva()" class="nav-link" routerLink = "ingresoAdmin">ADMINISTRADOR</a>
       </li>
       <li class="nav-item menuLetra">
-        <a class="nav-link" routerLink = "reportarSintomas">REPORTAR SINTOMAS</a>
+        <a *ngIf="auth.sesionActiva()" class="nav-link" routerLink = "reportarSintomas">REPORTAR SINTOMAS</a>
       </li>
       <li class="nav-item menuLetra">
-        <a class="nav-link" routerLink = "modificarUsuario">MODIFICAR USUARIO</a>
+        <a *ngIf="auth.sesionActiva()" class="nav-link" routerLink = "modificarUsuario">MODIFICAR USUARIO</a>
       </li>
       <li class="nav-item menuLetra">
-        <a class="nav-link" routerLink = "gestionUsuario">AUTOCUIDADO</a>
+        <a *ngIf="auth.sesionActiva()" class="nav-link" routerLink = "gestionUsuario">AUTOCUIDADO</a>
       </li>
       <li class="nav-item menuLetra">
-        <a class="nav-link" routerLink = "">SALIR</a>
+        <a *ngIf="auth.sesionActiva() === true" class="nav-link" (click)="logout()" >SALIR</a>
       </li>
     </ul>
   </div>
