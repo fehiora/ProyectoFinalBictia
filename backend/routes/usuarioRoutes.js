@@ -86,14 +86,24 @@ router.put("/modificaUsuario/:documento", authAdmin, async (req, res) => {
 });
 
 
-//3. Modificar contraseña del usuario. Esta acción solo la puede hacer el usuario
+//3. Modificar los datos de usuario, esta acción la hace el usuario
 router.put("/", authUsuario, async (req, res) => {
     const usuario = await Usuario.findByIdAndUpdate(
-        req.usuario._id, {
-            clave: req.body.clave
-        }, {
+        req.usuario._id, 
+        req.body, 
+        {
             new: true,
         }
+    );
+    //Si el usuario no existe
+    if (!usuario) return res.status(404).send("El usuario no está registrado");
+    res.status(200).send(usuario);
+});
+
+//4. Obtener los datos del usuario
+router.get("/", authUsuario, async (req, res) => {
+    const usuario = await Usuario.findById(
+        req.usuario._id, 
     );
     //Si el usuario no existe
     if (!usuario) return res.status(404).send("El usuario no está registrado");

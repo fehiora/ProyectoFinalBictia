@@ -11,6 +11,7 @@ export class AuthService {
   private ingresoUsuarioUrl = 'http://localhost:3000/apiCov/authUsuario';
   private ingresoAdminUrl = 'http://localhost:3000/apiCov/authAdmin';
   private registroSintomaUrl = 'http://localhost:3000/apiCov/seguimiento';
+  private modificarDatosUrl = 'http://localhost:3000/apiCov/usuario';
   
   constructor(private http: HttpClient) { }
 
@@ -67,5 +68,23 @@ export class AuthService {
       datos,
       { headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` }) }
     );
+  }
+
+  mostrarDatos(){
+    let token = localStorage.getItem('token');
+    return this.http.get<any>(
+      this.modificarDatosUrl, 
+      { headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` }) }
+    );
+  }
+
+  modificarDatos(datosUsuario){
+    let token = localStorage.getItem('token');
+    return this.http.put<any>(
+      this.modificarDatosUrl, 
+      datosUsuario,
+      { headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` }) }
+    );
+
   }
 }

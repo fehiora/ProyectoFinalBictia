@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { AdminService } from './service/admin.service';
-// import { AuthGuard } from './guard/auth.guard';
+import { ModificarDatosComponent } from './modificar-datos/modificar-datos.component';
 
 
 @NgModule({
@@ -32,7 +32,8 @@ import { AdminService } from './service/admin.service';
     GestionUsuarioComponent,
     ModificarUsuarioComponent,
     ConsultarSintomasComponent,
-    ReportarSintomasComponent
+    ReportarSintomasComponent,
+    ModificarDatosComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,6 @@ import { AdminService } from './service/admin.service';
   providers: [
     AuthService,
     AdminService,
-    // AuthGuard
   ],
   bootstrap: [AppComponent],
 })
