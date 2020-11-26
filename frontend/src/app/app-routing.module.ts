@@ -9,6 +9,7 @@ import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { ReportarSintomasComponent } from './reportar-sintomas/reportar-sintomas.component';
 import { ModificarDatosComponent } from './modificar-datos/modificar-datos.component';
+import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'modificarDatos',
     component: ModificarDatosComponent,
+  },
+  {
+    path: 'listarUsuarios',
+    component: ListarUsuariosComponent,
   },
 
 ];

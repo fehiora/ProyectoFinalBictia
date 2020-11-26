@@ -19,3 +19,11 @@
 p {
     color: #FFE485 !important;
 }
+
+.boton{
+    background-color: #FF9A47;
+    color:#2A2E3C ;
+    font-weight: bold;
+    border: none;
+    box-shadow: 5px 10px 18px #c6cce2;
+}

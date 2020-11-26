@@ -34,8 +34,12 @@ export class RegistroUsuarioComponent implements OnInit {
       (res) => {
         console.log("res:", res);
         this.router.navigate(['homeUsuario']);
+        alert('Usuario registrado exitosamente');
       },
-      (err) => console.log("err:", err)
+      (err) => {
+        console.log("err:", err);
+        alert ('No se pudo registrar al usuario')
+      }
     );
   }
 }

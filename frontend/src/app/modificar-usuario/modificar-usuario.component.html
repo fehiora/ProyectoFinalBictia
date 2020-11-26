@@ -7,10 +7,10 @@
   <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
     <ul class="navbar-nav ">
       <li class="nav-item active menuLetra align-items-end">
-        <a class="nav-link active" routerLink="/gestionAdmin">VER TODOS LOS REGISTROS</a>
+        <a class="nav-link active" routerLink="/gestionAdmin">VER REGISTROS</a>
       </li>
       <li class="nav-item active menuLetra align-items-end">
-        <a class="nav-link active" routerLink="/consultarSintomas">VER REGISTROS POR DOCUMENTO</a>
+        <a class="nav-link active" routerLink="/listarUsuarios">LISTAR USUARIOS</a>
       </li>
       <li class="nav-item menuLetra">
         <a class="nav-link" routerLink="/modificarUsuario">MODIFICAR USUARIOS</a>
@@ -38,7 +38,6 @@
         </div>
         <div class="col">
           <label for="inputState">*Sexo</label>
-          <!-- <select [(ngModel)]="registrarUsuario.sexo" id="inputState" class="form-control"> -->
           <select class="form-control">
             <option selected>Femenino</option>
             <option>Masculino</option>
@@ -60,8 +59,6 @@
       </div>
     </form>
     <div class="d-flex justify-content-around mt-5">
-      <!-- <button (click)=" registroUsuario()" type="submit" class="boton rounded-pill p-2">REGISTRARSE</button> -->
       <button  type="submit" class="boton rounded-pill p-2">MODIFICAR</button>
-      <!-- <a class="nav-link color boton rounded-pill" routerLink = "">MODIFICAR</a> -->
     </div>
   </section>

@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { AdminService } from './service/admin.service';
 import { ModificarDatosComponent } from './modificar-datos/modificar-datos.component';
+import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ModificarDatosComponent } from './modificar-datos/modificar-datos.compo
     ModificarUsuarioComponent,
     ConsultarSintomasComponent,
     ReportarSintomasComponent,
-    ModificarDatosComponent
+    ModificarDatosComponent,
+    ListarUsuariosComponent
   ],
   imports: [
     BrowserModule,
