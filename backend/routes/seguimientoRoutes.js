@@ -42,8 +42,20 @@ router.get("/listaSintomas/:documento", authAdmin, async (req, res) => {
   if (!usuario) return res.status(400).send("El usuario no está registrado");
   //Si el usuario existe
   // const seguimiento = await Seguimiento.find({ idUsuario: req.usuario._id });
-  const seguimiento = await Seguimiento.find({ idUsuario: usuario._id });
-  res.send(seguimiento)
+  await Seguimiento.find({ 
+    usuario: usuario._id 
+  }).populate({
+    path: 'usuario',
+    select: 'nombre apellido documento cargo -_id'
+  }).exec( (error, seguimientos) => {
+    if (error) { 
+      return res.status(404).send("No hay seguimientos registrados");
+    }
+
+    // console.log("seguimientos:", seguimientos)
+    return res.status(200).send(seguimientos);
+  })
+  
 });
 
 // 3. Listar síntomas todos los usuarios por el administrador una vez se loguea

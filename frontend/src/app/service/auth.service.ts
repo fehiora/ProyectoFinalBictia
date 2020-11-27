@@ -12,7 +12,6 @@ export class AuthService {
   private ingresoAdminUrl = 'http://localhost:3000/apiCov/authAdmin';
   private registroSintomaUrl = 'http://localhost:3000/apiCov/seguimiento';
   private modificarDatosUrl = 'http://localhost:3000/apiCov/usuario';
-  public _login: Boolean = false;
   
   constructor(private http: HttpClient) { }
 
@@ -25,17 +24,23 @@ export class AuthService {
   }
 
   ingresoAdmin(admin){
-    return this.http.post<any>(this.ingresoAdminUrl, admin).subscribe(
-      (res) => {
-        console.log(res);
-        localStorage.setItem('token', res.jwtToken);
-        return true;
-      },
-      (err) => {
-        console.log(err)
-        return false;
-      }
-    );
+    return this.http.post<any>(this.ingresoAdminUrl, admin);
+  }
+
+  isAdmin(){
+    if(localStorage.getItem('token')){
+      const token_data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]))
+      return token_data.admin;
+    }
+    return false;
+  }
+
+  nombre(){
+    if(localStorage.getItem('token')){
+      const token_data = JSON.parse(atob(localStorage.getItem('token').split('.')[1]))
+      return token_data.nombre;
+    }
+    return '';
   }
 
   sesionActiva(){

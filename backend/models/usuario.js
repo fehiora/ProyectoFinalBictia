@@ -27,6 +27,8 @@ esquemaUsuario.methods.generateJWT = function () {
     return jwt.sign({
             _id: this._id,
             documento: this.documento,
+            nombre: `${this.nombre} ${this.apellido}`,
+            admin: false,
         },
         "claveUsuario",
         { expiresIn: 20 * 60 } // expira en 20min
@@ -38,6 +40,7 @@ esquemaUsuario.methods.generateJWTAdmin = function () {
     return jwt.sign({
             _id: this._id,
             documento: this.documento,
+            nombre: `${this.nombre} ${this.apellido}`,
             admin: this.admin,
         },
         "claveAdmin",

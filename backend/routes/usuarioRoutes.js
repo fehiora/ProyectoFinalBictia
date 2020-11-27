@@ -110,6 +110,44 @@ router.get("/", authUsuario, async (req, res) => {
     res.status(200).send(usuario);
 });
 
+//5. Obtener listado de usuarios
+router.get("/listarUsuarios", authAdmin, async (req, res) => {
+    const usuarios = await Usuario.find();
+    //Si el usuario no existe
+    if (!usuarios) return res.status(404).send("No hay usuarios registrados");
+    res.status(200).send(usuarios);
+});
+
+//6. Obtener los datos del usuario por documento
+router.get("/:documento", authAdmin, async (req, res) => {
+    const usuario = await Usuario.findOne({
+        documento: req.params.documento
+    });
+    //Si el usuario no existe
+    if (!usuario) return res.status(404).send("El usuario no está registrado");
+    res.status(200).send(usuario);
+});
+
+//7. Modificar los datos de usuario por documento, esta acción la hace el admin
+router.put("/:documento", authAdmin, async (req, res) => {
+    const usuario = await Usuario.findOne({
+        documento: req.params.documento
+    });
+
+    //Si el usuario no existe
+    if (!usuario) return res.status(404).send("El usuario no está registrado");
+
+    const nuevo_usuario = await Usuario.findByIdAndUpdate(
+        usuario._id, 
+        req.body, 
+        {
+            new: true,
+        }
+    );
+    //Si el usuario no existe
+    if (!nuevo_usuario) return res.status(500).send("Error al actualizar el usuario");
+    res.status(200).send(nuevo_usuario);
+});
 
 //Creando el export
 module.exports = router;

@@ -8,8 +8,9 @@
   <link href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all" rel="stylesheet">
 
 <nav class="navbar navbar-expand-lg navAdmin justify-content-betwen">
+  <p class="menuLetra">BIENVENID@: {{ auth.nombre() }}</p>
   <div></div>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+  <!-- <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
     <ul class="navbar-nav ">
       <li class="nav-item active menuLetra align-items-end">
         <a class="nav-link active" routerLink="/gestionAdmin">VER REGISTROS</a>
@@ -21,7 +22,7 @@
         <a class="nav-link" routerLink="/modificarUsuario">MODIFICAR USUARIOS</a>
       </li>
     </ul>
-  </div>
+  </div> -->
 </nav>
 
 <div class="row mt-3">
@@ -35,22 +36,31 @@
             <th scope="col">Apellido</th>
             <th scope="col">Sexo</th>
             <th scope="col">Fecha de Nacimiento</th>
-            <th scope="col">Dolor de garganta</th>
-            <th scope="col">Malestar general</th>
-            <th scope="col">Condiciones médicas previas</th>
+            <th scope="col">Enfermedades Previas</th>
             <th scope="col">Cargo</th>
-            <th scope="col">Estado del contrato</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Uso de datos</th>
+            <th scope="col">Acci&oacute;n</th>
           </tr>
         </thead>
         <tbody>
-          <!-- <tr *ngFor="let seguimiento of seguimientos">
+          <tr *ngFor="let usuario of listaUsuarios">
             <td>{{ usuario.documento }}</td>
-            <td>{{ seguimiento.usuario.nombre }}</td>
-            <td>{{ seguimiento.usuario.apellido }}</td>
-            <td>{{ seguimiento.fecha }}</td>
-            <td>{{ seguimiento.jornada }}</td>
-            
-          </tr> -->
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>{{ usuario.sexo }}</td>
+            <td>{{ usuario.fechaNacim | date:'dd-MM-yyyy' : '-500' }}</td>
+            <td>{{ usuario.preMedica }}</td>
+            <td>{{ usuario.cargo }}</td>
+            <td>{{ usuario.clave }}</td>
+            <td class="text-center">
+              <i *ngIf="!usuario.usoDatos" class="text-danger fas fa-exclamation-circle"></i>
+              <i *ngIf="usuario.usoDatos" class="text-success fas fa-check-circle"></i>
+            </td>
+            <td class="text-center">
+              <a [routerLink]="['/modificarUsuario', usuario.documento]"><i class="fas fa-pencil-alt"></i></a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

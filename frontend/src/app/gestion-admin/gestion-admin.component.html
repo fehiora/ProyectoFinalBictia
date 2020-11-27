@@ -8,8 +8,9 @@
   <link href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all" rel="stylesheet">
 
 <nav class="navbar navbar-expand-lg navAdmin justify-content-betwen">
+  <p class="menuLetra">BIENVENID@: {{ auth.nombre() }}</p>
   <div></div>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+  <!-- <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
     <ul class="navbar-nav ">
       <li class="nav-item active menuLetra align-items-end">
         <a class="nav-link active" routerLink="/gestionAdmin">VER REGISTROS</a>
@@ -21,17 +22,23 @@
         <a class="nav-link" routerLink="/modificarUsuario">MODIFICAR USUARIOS</a>
       </li>
     </ul>
-  </div>
+  </div> -->
 </nav>
 
 <div class="">
 
+  <div class="container input-group mt-2 mb-2"></div>
+
+  <form #buscarForm="ngForm" (ngSubmit)="listarSintomasPorDocumento()">
   <div class="container input-group mt-2 mb-2">
-    <input type="text" class="form-control" placeholder="Documento" aria-label="Documento" aria-describedby="button-addon2">
-    <div class="input-group-append">
-      <button class="btn boton" type="button" id="button-addon2">Buscar</button>
-    </div>
+      <input [(ngModel)]="usuario.documento" name="documento" id="documento" #documento="ngModel" type="text" class="form-control" placeholder="Documento" aria-label="Documento" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button (click)="listarSintomasPorDocumento()" class="btn boton" type="submit" id="button-addon2">Buscar</button>
+      </div>
   </div>
+  </form>
+
+  <div class="container input-group mt-2 mb-2"></div>
 
   <div class="row">
     <div class="col-md-1"></div>
@@ -63,7 +70,7 @@
             <td>{{ seguimiento.usuario.documento }}</td>
             <td>{{ seguimiento.usuario.nombre }}</td>
             <td>{{ seguimiento.usuario.apellido }}</td>
-            <td>{{ seguimiento.fecha }}</td>
+            <td>{{ seguimiento.fecha | date:'dd-MM-yyyy HH:mm' : '-500' }}</td>
             <td>{{ seguimiento.jornada }}</td>
             <td class="text-center">
               <i *ngIf="seguimiento.garganta === true" class="text-danger fas fa-exclamation-circle"></i>

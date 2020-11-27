@@ -42,7 +42,7 @@ const routes: Routes = [
     component: GestionUsuarioComponent,
   },
   {
-    path: 'modificarUsuario',
+    path: 'modificarUsuario/:documento',
     component: ModificarUsuarioComponent,
   },
   {

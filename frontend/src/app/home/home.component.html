@@ -15,17 +15,26 @@
       <li class="nav-item menuLetra">
         <a *ngIf="!auth.sesionActiva()" class="nav-link" routerLink = "ingresoAdmin">ADMINISTRADOR</a>
       </li>
-      <li class="nav-item menuLetra">
+      <li *ngIf="!auth.isAdmin()" class="nav-item menuLetra">
         <a *ngIf="auth.sesionActiva()" class="nav-link" routerLink = "reportarSintomas">REPORTAR SINTOMAS</a>
       </li>
-      <li class="nav-item menuLetra">
+      <li *ngIf="!auth.isAdmin()" class="nav-item menuLetra">
         <a *ngIf="auth.sesionActiva()" class="nav-link" routerLink = "modificarDatos">MODIFICAR USUARIO</a>
       </li>
-      <li class="nav-item menuLetra">
+      <li *ngIf="!auth.isAdmin()" class="nav-item menuLetra">
         <a *ngIf="auth.sesionActiva()" class="nav-link" routerLink = "gestionUsuario">AUTOCUIDADO</a>
       </li>
+      <li *ngIf="auth.isAdmin()" class="nav-item active menuLetra align-items-end">
+        <a *ngIf="auth.sesionActiva()" class="nav-link active" routerLink="gestionAdmin">VER REGISTROS</a>
+      </li>
+      <li *ngIf="auth.isAdmin()" class="nav-item active menuLetra align-items-end">
+        <a *ngIf="auth.sesionActiva()" class="nav-link active" routerLink="listarUsuarios">LISTAR USUARIOS</a>
+      </li>
+      <!-- <li *ngIf="auth.isAdmin()" class="nav-item menuLetra">
+        <a *ngIf="auth.sesionActiva()" class="nav-link" routerLink="modificarUsuario">MODIFICAR USUARIOS</a>
+      </li> -->
       <li class="nav-item menuLetra">
-        <a *ngIf="auth.sesionActiva() === true" class="nav-link" (click)="logout()" >SALIR</a>
+        <a *ngIf="auth.sesionActiva()" class="nav-link" (click)="logout()" >SALIR</a>
       </li>
     </ul>
   </div>

@@ -22,8 +22,8 @@ export class ModificarDatosComponent implements OnInit {
   }
 
   constructor(
-    private auth:AuthService,
     private router: Router,
+    private auth: AuthService,
   ) { }
 
   ngOnInit(): void {

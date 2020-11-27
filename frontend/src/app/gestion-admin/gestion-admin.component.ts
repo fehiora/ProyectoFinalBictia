@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../service/auth.service';
 import { AdminService } from '../service/admin.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-admin',
@@ -8,17 +10,39 @@ import { AdminService } from '../service/admin.service';
 })
 export class GestionAdminComponent implements OnInit {
   public seguimientos: [];
-
-  constructor(private adminService: AdminService) {}
+  public usuario = {
+  	documento: ''
+  }
+  
+  constructor(
+  	private adminService: AdminService,
+  	public auth: AuthService,
+  ) {}
 
   ngOnInit(): void {
     this.listarSintomas();
   }
 
+
+  listarSintomasPorDocumento() {
+  	console.log('usuario:', this.usuario)
+  	console.log('doc:', this.usuario.documento)
+  	this.adminService.listaSintomasPorDocumento(this.usuario.documento).subscribe(
+      (res) => {
+        console.log('listarSintomasPorDocumento:', res);
+        this.seguimientos = res;
+      },
+      (err) => {
+        console.error('Error en la solicitud de sintomas');
+        console.log(err);
+      }
+    );
+  }
+
   listarSintomas() {
     this.adminService.listaSintomas().subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
         this.seguimientos = res;
       },
       (err) => {

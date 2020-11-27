@@ -1,10 +1,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
   integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
+  <script src="https://kit.fontawesome.com/6888423b58.js" crossorigin="anonymous"></script>
+  <link href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css" media="all" rel="stylesheet">
+  <link href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css" media="all"
+    rel="stylesheet">
+  <link href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all" rel="stylesheet">
+
 <nav class="navbar navbar-expand-lg navAdmin justify-content-betwen">
-  <p class="menuLetra">BIENVENID@: </p>
+  <p class="menuLetra">BIENVENID@: {{ auth.nombre() }}</p>
   <div></div>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+  <!-- <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
     <ul class="navbar-nav ">
       <li class="nav-item active menuLetra align-items-end">
         <a class="nav-link active" routerLink="/gestionAdmin">VER REGISTROS</a>
@@ -16,49 +22,64 @@
         <a class="nav-link" routerLink="/modificarUsuario">MODIFICAR USUARIOS</a>
       </li>
     </ul>
-  </div>
+  </div> -->
 </nav>
 
 <section class="container mt-5">
-    <form>
-      <div class="row">
-        <div class="col">
-          <label for="formGroupExampleInput">*Nombres</label>
-          <input type="text" class="form-control" placeholder="Juan">
-        </div>
-        <div class="col">
-          <label for="formGroupExampleInput">*Apellidos</label>
-          <input type="text" class="form-control" placeholder="Sánchez">
-        </div>
+  <form #modificarUsurioForm="ngForm" (ngSubmit)="modificarDatos()">
+    <div class="row">
+      <div class="col">
+        <label for="formGroupExampleInput">*Nombres</label>
+        <input type="text" name="nombre" id="nombre" #nombre="ngModel" [(ngModel)]="datosUsuario.nombre"
+          class="form-control" placeholder="Juan">
       </div>
-      <div class="row mt-3">
-        <div class="col">
-          <label for="formGroupExampleInput">*Documento</label>
-          <input type="number" class="form-control" placeholder="80902035">
-        </div>
-        <div class="col">
-          <label for="inputState">*Sexo</label>
-          <select class="form-control">
-            <option selected>Femenino</option>
-            <option>Masculino</option>
-            <option>Otro</option>
-          </select>
-        </div>
+      <div class="col">
+        <label for="formGroupExampleInput">*Apellidos</label>
+        <input type="text" name="apellido" id="apellido" #apellido="ngModel" [(ngModel)]="datosUsuario.apellido"
+          class="form-control" placeholder="Sánchez">
       </div>
-      <div class="row mt-3">
-        <div class="col">
-          <label for="formGroupExampleInput">*Enfermedades Previas</label>
-          <input type="text" class="form-control" placeholder="Sobrepeso">
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col">
-          <label for="formGroupExampleInput">*Cargo</label>
-          <input type="text" class="form-control" placeholder="Mensajero">
-        </div>
-      </div>
-    </form>
-    <div class="d-flex justify-content-around mt-5">
-      <button  type="submit" class="boton rounded-pill p-2">MODIFICAR</button>
     </div>
-  </section>
+    <div class="row mt-3">
+      <div class="col">
+        <label for="formGroupExampleInput">*Documento</label>
+        <input type="number" name="documento" id="documento" #documento="ngModel"
+          [(ngModel)]="datosUsuario.documento" class="form-control" placeholder="80902035">
+      </div>
+      <div class="col">
+        <label for="inputState">*Sexo</label>
+        <select name="sexo" id="sexo" #sexo="ngModel" [(ngModel)]="datosUsuario.sexo" class="form-control">
+          <option selected>Femenino</option>
+          <option>Masculino</option>
+          <option>Otro</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col mt-4    ">
+        <label for="inputState">*Fecha de nacimiento</label>
+        <input name="nacimiento" id="nacimiento" #nacimiento="ngModel" [(ngModel)]="datosUsuario.fechaNacim"
+          type="date" value="2020-10-28" min="1955-01-01" max="2002-12-31">
+      </div>
+      <div class="col">
+        <label for="formGroupExampleInput">*Enfermedades Previas</label>
+        <input type="text" name="enfermedad" id="enfermedad" #enfermedad="ngModel"
+          [(ngModel)]="datosUsuario.preMedica" class="form-control" placeholder="Sobrepeso">
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <label for="formGroupExampleInput">*Cargo</label>
+        <input type="text" name="cargo" id="cargo" #cargo="ngModel" [(ngModel)]="datosUsuario.cargo"
+          class="form-control" placeholder="Mensajero">
+      </div>
+      <div class="col">
+        <label for="formGroupExampleInput">*Contraseña</label>
+        <input type="password" name="clave" id="clave" #clave="ngModel" [(ngModel)]="datosUsuario.clave"
+          class="form-control" placeholder="Mayo1234+">
+      </div>
+    </div>
+  </form>
+  <div class="d-flex justify-content-around mt-5">
+    <button (click)="modificarDatos()" type="submit" class="boton rounded-pill p-2">MODIFICAR</button>
+  </div>
+</section>
