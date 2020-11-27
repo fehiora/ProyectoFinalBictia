@@ -23,11 +23,21 @@ export class HomeUsuarioComponent implements OnInit {
   }
 
   ingresarUsuario(){
-    if(this.auth.ingresoUsuario(this.ingresoUsuario)){
-      this.router.navigate(['reportarSintomas']);
-      alert ('Ingreso exitoso')
-    }else{
-      alert("Error en el ingreso");
-    }
+    this.auth.ingresoUsuario(this.ingresoUsuario).subscribe(
+      (res) => {
+        console.log("res:", res);
+        localStorage.setItem('token', res.jwtToken);
+        this.router.navigate(['reportarSintomas']);
+      },
+      (err) => {
+        console.log("err:", err)
+        alert(err.error);
+        this.ingresoUsuario = {
+          documento:'',
+          clave: ''
+        }
+      }
+    )
+    
   }
 }
